@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Simple Calculator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f2f2f2;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .calculator {
+      background: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
+      width: 400px;
+      text-align: center;
+    }
+
+    h2 {
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    input[type="number"] {
+      width: 40%;
+      padding: 10px;
+      margin: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    .btn {
+      padding: 10px 20px;
+      margin: 8px;
+      border: none;
+      border-radius: 5px;
+      color: #fff;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    .btn-blue {
+      background-color: #337ab7;
+    }
+    .btn-blue:hover {
+      background-color: #286090;
+    }
+
+    .btn-red {
+      background-color: #d9534f;
+    }
+    .btn-red:hover {
+      background-color: #c9302c;
+    }
+
+    #result {
+      margin-top: 15px;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      background: #fafafa;
+      min-height: 30px;
+      text-align: left;
+    }
+  </style>
+</head>
+<body>
+  <div class="calculator">
+    <h2>Simple calculator</h2>
+    <input type="number" id="num1" placeholder="NUMBER e.g. 1337">
+    <input type="number" id="num2" placeholder="NUMBER e.g. 2108"><br>
+
+    <button class="btn btn-blue" onclick="calculate('+')">+ Add</button>
+    <button class="btn btn-blue" onclick="calculate('-')">- Subtract</button>
+    <button class="btn btn-blue" onclick="calculate('/')">/ Divide</button>
+    <button class="btn btn-blue" onclick="calculate('*')">* Multiply</button><br>
+
+    <div id="result">Result:</div><br>
+
+    <button class="btn btn-red" onclick="clearResult()">Clear</button>
+  </div>
+
+  <script>
+    function calculate(op) {
+      let n1 = parseFloat(document.getElementById("num1").value);
+      let n2 = parseFloat(document.getElementById("num2").value);
+      let res;
+
+      if (isNaN(n1) || isNaN(n2)) {
+        res = "Please enter both numbers.";
+      } else {
+        if (op === '+') res = n1 + n2;
+        if (op === '-') res = n1 - n2;
+        if (op === '*') res = n1 * n2;
+        if (op === '/') res = n2 !== 0 ? n1 / n2 : "Error (divide by 0)";
+      }
+
+      document.getElementById("result").innerText = "Result: " + res;
+    }
+
+    function clearResult() {
+      document.getElementById("num1").value = "";
+      document.getElementById("num2").value = "";
+      document.getElementById("result").innerText = "Result:";
+    }
+  </script>
+</body>
+</html>
